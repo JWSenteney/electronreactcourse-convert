@@ -1,3 +1,4 @@
+import { ipcRenderer } from "electron";
 import {
   ADD_VIDEO,
   ADD_VIDEOS,
@@ -9,7 +10,9 @@ import {
 
 // TODO: Communicate to MainWindow process that videos
 // have been added and are pending conversion
-export const addVideos = videos => dispatch => {};
+export const addVideos = videos => dispatch => {
+  ipcRenderer.send("videos:added", videos);
+};
 
 // TODO: Communicate to MainWindow that the user wants
 // to start converting videos.  Also listen for feedback
